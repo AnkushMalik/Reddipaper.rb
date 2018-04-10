@@ -26,5 +26,8 @@ def set_wp wp_link
 	puts system 'gsettings set org.gnome.desktop.background picture-uri file://' + Dir.pwd + '/wallpaper.png'	
 end
 
-choose_wp redditscrape
+while true
+	choose_wp redditscrape
+	sleep 120
+end
 
