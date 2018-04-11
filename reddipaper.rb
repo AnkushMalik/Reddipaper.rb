@@ -8,11 +8,11 @@ else
 end
 
 def choose_wp redditscrape
-	a = rand(0..redditscrape.css('.thing').size)
+	a = rand(0..20)
 	wallobj = redditscrape.css('.thing')[a]
 	wp_path = wallobj.css('.bylink').first.attributes['href'].value
 	wppage = Nokogiri::HTML(open(wp_path, 'User-Agent' => 'Nooby'))
-	if !wppage.css('.preview').size
+	if !wppage.css('.preview').size or !wppage.css('.media-preview-content a').first
 		puts "404!, retrying..."
 		choose_wp redditscrape
 	else
