@@ -9,9 +9,9 @@ optparse = OptionParser.new do|opts|
   opts.on( '-th', '--thread var' ) do |var|
     cloptions[:thread] = var
   end
-  cloptions[:time] = nil
-  opts.on( '-t', '--time var' ) do |var|
-    cloptions[:time] = var
+  cloptions[:clock] = nil
+  opts.on( '-c', '--clock var' ) do |var|
+    cloptions[:clock] = var
   end
 end
 
@@ -24,7 +24,7 @@ else
 end
 
 def choose_wp redditscrape
-	a = rand(0..20)
+	a = rand(0..redditscrape.css('.thing').size-1)
 	wallobj = redditscrape.css('.thing')[a]
 	wp_path = wallobj.css('.bylink').first.attributes['href'].value
 	wppage = Nokogiri::HTML(open(wp_path, 'User-Agent' => 'Nooby'))
@@ -50,8 +50,10 @@ end
 
 while true
 	choose_wp redditscrape
-	if cloptions[:time]
-		sleep cloptions[:time].to_i
+	if cloptions[:clock]
+		sleep cloptions[:clock].to_i
+		puts cloptions[:clock]
+		puts 'hi'
 	else
 		sleep 120
 	end
