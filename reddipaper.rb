@@ -1,10 +1,22 @@
 require 'open-uri'
 require 'nokogiri'
+require 'optparse'
 
-if !ARGV.empty?
-	redditscrape = Nokogiri::HTML(open("https://www.reddit.com/r/#{ARGV[0]}", 'User-Agent' => 'Nooby'))
+cloptions = {}
+
+optparse = OptionParser.new do|opts|
+  cloptions[:thread] = nil
+  opts.on( '-tr', '--thread var' ) do |var|
+    cloptions[:thread] = var
+  end
+end
+
+optparse.parse!
+
+if cloptions[:thread]
+	redditscrape = Nokogiri::HTML(open("https://www.reddit.com/r/#{cloptions[:thread]}", 'User-Agent' => 'Nooby'))
 else
-	redditscrape = Nokogiri::HTML(open("https://www.reddit.com/r/wallpaper/#{ARGV[0]}", 'User-Agent' => 'Nooby'))
+	redditscrape = Nokogiri::HTML(open("https://www.reddit.com/r/wallpaper", 'User-Agent' => 'Nooby'))
 end
 
 def choose_wp redditscrape
@@ -34,5 +46,6 @@ end
 
 while true
 	choose_wp redditscrape
+	puts "Thread inputed : #{cloptions[:thread]}"
 	sleep 120
 end
