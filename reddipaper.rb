@@ -6,7 +6,7 @@ cloptions = {}
 
 optparse = OptionParser.new do|opts|
   cloptions[:thread] = nil
-  opts.on( '-th', '--thread var' ) do |var|
+  opts.on( '-t', '--thread var' ) do |var|
     cloptions[:thread] = var
   end
   cloptions[:clock] = nil
@@ -52,8 +52,6 @@ while true
 	choose_wp redditscrape
 	if cloptions[:clock]
 		sleep cloptions[:clock].to_i
-		puts cloptions[:clock]
-		puts 'hi'
 	else
 		sleep 120
 	end
