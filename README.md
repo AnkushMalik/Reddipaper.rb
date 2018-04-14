@@ -20,8 +20,12 @@ ruby reddipaper.rb
 
 #### Customizations:
 
-To select  wallpapers from `r/EarthPorn` subreddit, and set duration for `10` mins
+To select  wallpapers from `r/Wallpapers` subreddit, and set duration for `45` seconds
 
 ```bash
-$ redditwallpapers -t EarthPorn -t 10
+$ redditwallpapers -t Wallpapers -c 45
 ```
+## Requirements
+* Linux (Gnome shell or Unity)
+* Ruby
+* Nokogiri Gem
