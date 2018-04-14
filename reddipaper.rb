@@ -53,6 +53,6 @@ while true
 	if cloptions[:clock]
 		sleep cloptions[:clock].to_i
 	else
-		sleep 120
+		sleep 45
 	end
 end
